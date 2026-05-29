@@ -1,0 +1,139 @@
+<section class="users-wrap">
+  <div class="status">
+    <div class="card">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+        <div>
+          <h2 class="title">{{ showUpdateButton ? 'Update User' : 'Add Users' }}</h2>
+        </div>
+      </div>
+      <!-- <div class="col-md-6"><app-back-button></app-back-button></div> -->
+    </div>
+
+    <form [formGroup]="form">
+      <div class="row mt-4">
+        <div class="col-md-2">
+          <label for="exampleInputName">Name of User</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputName"
+            aria-describedby="nameHelp"
+            placeholder="Enter User Name"
+            formControlName="name"
+            [ngClass]="{ 'error-border': submitted && form.get('name')?.hasError('required') }"
+          />
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <label for="exampleInputEmail">Email-Id</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail"
+            aria-describedby="nameHelp"
+            placeholder="Enter Email"
+            formControlName="emailId"
+            [ngClass]="{
+              'error-border': submitted && (form.get('emailId')?.hasError('required') || form.get('emailId')?.hasError('email'))
+            }"
+          />
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <label for="exampleInputPassword">Password</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputPassword"
+            aria-describedby="nameHelp"
+            placeholder="Enter Password"
+            formControlName="password"
+            [ngClass]="{ 'error-border': submitted && form.get('password')?.hasError('required') }"
+          />
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <label for="exampleInputDesignation">Designation</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputDesignation"
+            aria-describedby="nameHelp"
+            placeholder="Enter Designation"
+            formControlName="designation"
+            [ngClass]="{ 'error-border': submitted && form.get('designation')?.hasError('required') }"
+          />
+        </div>
+      </div>
+
+        <div class="row mt-3">
+        <div class="col-md-2">
+          <label for="exampleInputDesignation">Phone Number</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputDesignation"
+            aria-describedby="nameHelp"
+            placeholder="Enter Phone Number"
+            formControlName="phoneNumber"
+            [ngClass]="{ 'error-border': submitted && form.get('phoneNumber')?.hasError('required') }"
+          />
+        </div>
+      </div>
+    </form>
+
+    <div class="row mt-3">
+      <div class="col-md-3">
+        @if (!showUpdateButton) {
+          <button type="button" class="btn btn-primary form-button" [disabled]="isSubmitting" (click)="addUser('create')">
+            Save
+          </button>
+        } @else {
+          <button type="button" class="btn btn-primary form-button" [disabled]="isSubmitting" (click)="addUser('update')">
+            Update
+          </button>
+        }
+        &nbsp;
+        <button type="button" class="btn btn-primary mx-1 form-button" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div class="mt-2">
+    <app-bootstrap-table
+      [columns]="columns"
+      [dataSource]="allUsers()"
+      [bodyTemplate]="actionTemplate"
+      [theme]="'common-blue'"
+    >
+    </app-bootstrap-table>
+    </div>
+  </div>
+</section>
+
+<ng-template #actionTemplate let-row="row" let-column="column">
+  @if (column.dataField === 'Action') {
+    <button type="button" class="action-icon-btn" title="Edit" (click)="edit(row)">
+      <i class="fa-solid fa-pen-to-square users-action-edit"></i>
+    </button>
+    <button type="button" class="action-icon-btn ms-2" title="Delete" (click)="delete(row.id)">
+      <i class="fa-solid fa-trash users-action-delete"></i>
+    </button>
+  }
+</ng-template>

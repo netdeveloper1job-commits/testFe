@@ -1,0 +1,387 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@use 'app/styles/variables' as *;
+@use 'app/styles/typography' as *;
+@use 'app/styles/theme' as *;
+ 
+/* Optional: global resets */
+body {
+  // font-family: var(--font-family);
+  background: var(--bg-body);
+  color: var(--text-color);
+}
+ 
+.page-title{
+  font-size:1.5rem !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+  margin-bottom: 0px;
+}
+ 
+/*------------------Form CSS------------------*/
+/* Form Styling */
+.card {
+    border-radius: 15px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+
+/* Section Headers */
+h6.fw-bold {
+  font-size: 1rem;
+  padding: 5px 0px;
+  position: sticky;
+  top: -1.5rem;
+  z-index: 10;
+  color: var(--text-color);
+}
+ 
+
+/* Browser-specific styles for all inputs */
+::-webkit-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c5c3c3 !important;
+  opacity: 1 !important;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c5c3c3 !important;
+  opacity: 1 !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #c5c3c3 !important;
+  opacity: 1 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-header,
+  .modal-footer {
+    padding: 0.675rem;
+  }
+
+  .input-group-text {
+    padding: 0.375rem 0.75rem;
+  }
+}
+ 
+ 
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 2px;       /* vertical scrollbar */
+  height: 2px;      /* horizontal scrollbar */
+}
+ 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0px;
+}
+ 
+/* Firefox */
+* {
+  scrollbar-width: thin;          /* auto | thin | none */
+  scrollbar-color: rgba(0,0,0,.4) transparent;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+}
+.select-field-value {
+  font-size: 14px;
+  font-weight: 400;
+  input {
+    &.form-control {
+      background:$light-purple;
+      height: 32px;
+      padding-bottom: 10px;
+      font-size: 14px;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+  select {
+    &.form-control {
+      background: $light-purple;
+      height: 30px;
+      line-height: 1em;
+    }
+  }
+}
+
+.field-value {
+  font-size: 14px;
+  font-weight: 400;
+  input {
+    &.form-control {
+      background: $light-purple;
+      height: 32px;
+      padding-bottom: 10px;
+      font-size: 14px;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+  select {
+    &.form-control {
+      background: $light-purple;
+      // height:30px;
+      // line-height: 1em;
+      font-size: 12px;
+      color: #6e6b6bfc;
+    }
+  }
+}
+
+.column-field-value {
+  font-size: 14px;
+  font-weight: 400;
+  input {
+    &.form-control {
+      background: $light-purple;
+      height: 30px;
+      padding-bottom: 10px;
+      font-size: 0.9em;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+  textarea {
+    &.form-control {
+      background: $light-gray;;
+      font-size: 0.9em;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+  select {
+    &.form-control {
+      background: $light-gray;;
+      height: 30px;
+      font-size: 0.88em;
+      padding: 3px 13px;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+}
+
+input.form-control:disabled,
+input.form-control[readonly],
+select.form-control:disabled,
+select.form-select:disabled,
+textarea.form-control:disabled,
+input[type='file'].form-control:disabled {
+  background: #d1d3d4 !important;
+  color: #5b6268 !important;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.second_row {
+  margin-top: 3px;
+  .inputpre {
+    width: 15%;
+  }
+}
+
+.create-button {
+  height: 28px;
+  line-height: 0.1em;
+  position: relative;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+.search {
+  text-align: right;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.crossbtn {
+  font-size: 25px;
+  border: none;
+  background-color: $White;
+}
+.close-button {
+  height: 28px;
+  line-height: 0.1em;
+  position: relative;
+}
+
+::ng-deep .footer {
+  display: flex !important;
+  flex-shrink: 0 !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  /* padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5); */
+  background-color: var(--bs-modal-footer-bg) !important;
+  border-bottom-right-radius: var(--bs-modal-inner-border-radius) !important;
+  border-bottom-left-radius: var(--bs-modal-inner-border-radius) !important;
+}
+.button-style {
+  padding: 2px 10px !important;
+  background-color: none!important;
+  font-size: 14px;
+  color:$dark-bluish-gray;
+  border:1px solid $muted-bluish-purple;
+}
+.grid-title {
+  font-size: 16px;
+  font-weight: 600;
+  color:$dark-bluish-gray
+}
+.crossbtn {
+  text-decoration: none;
+  font-size: 24px;
+  color: $red;
+  background-color: $modal-header-bg;
+}
+// ::ng-deep .modal {
+//   --bs-modal-margin: 0rem !important;
+// }
+
+.modal-header {
+  background-color: $modal-header-bg;
+  height: 50px;
+  justify-content: space-between;
+}
+.modal-footer {
+  height: 41px;
+}
+
+.error-border {
+  border: 1px solid $red !important;
+}
+
+:host::ng-deep .multiselect-dropdown .dropdown-btn {
+  background: rgba(236, 242, 248, 0.8117647059) !important;
+  height: 30px !important;
+  padding-bottom: 10px !important;
+  font-size: 0.9em !important;
+  border: 1px solid #dee2e6 !important;
+  line-height: 15px !important;
+  font-size: 14.8px !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+  content: "" !important;
+  background-size: 12.7px !important;
+}
+
+:host::ng-deep {
+  .is-invalid {
+    .multiselect-dropdown .dropdown-btn {
+      border: 1px solid $red !important;
+    }
+  }
+}
+
+:host::ng-deep.multiselect-dropdown
+  .dropdown-btn
+  .dropdown-multiselect__caret:before {
+  border-style: none !important;
+}
+
+.content{
+  margin-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:host::ng-deep.ngx-accordion-heading {
+  background: #337ab7 !important;
+  border-radius: 6px !important;
+}
+
+:host::ng-deep.ngx-accordion-heading-title {
+  position: relative !important;
+  left: 10px !important;
+}
+
+:host::ng-deep.expand-symbol {
+  font-size: 20px !important;
+}
+
+:host::ng-deep.ngx-accordion-group-element {
+  font-size: 18px !important;
+}
+.form-button , .form-button:hover {
+  background-color: $dark-bluish-gray;
+  border: $dark-bluish-gray;
+  font-size: 14px;
+  color:white;
+  padding: 4px 10px !important;
+  border-radius:6px
+}
+.form-button:hover {
+  background-color: $dark-bluish-gray;
+  border: $dark-bluish-gray;
+  font-size: 14px;
+  color:white;
+  padding: 4px 10px !important;
+  border-radius:6px
+}
+.error-border {
+  border: 1px solid #dc3545 !important;
+}
+
+.action-icon-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.users-action-edit {
+  color: #0d6efd;
+}
+
+.users-action-delete {
+  color: #dc3545;
+}
+ select {
+    &.form-control {
+      background: $light-purple;
+      // height:30px;
+      // line-height: 1em;
+      font-size: 12px;
+      color: #6e6b6bfc;
+    }
+  }
+body{
+  font-size: 14px;
+}
+.arrow-icon {
+    cursor: pointer;
+}
+
+
+

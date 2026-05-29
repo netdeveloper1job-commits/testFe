@@ -1,0 +1,73 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+  <div class="sidebar-header" 
+       role="button">
+     <i class="fas fa-shield-alt fa-2x me-1"></i>
+    <!-- <img *ngIf="logoUrl; else defaultLogo" [src]="logoUrl" alt="" width="40" height="40"> -->
+    <span [style.maxWidth]="collapsed ? '0px' : '200px'" class="navbar-brand me-3">ComplianceHub</span>
+  </div>
+  
+  <button class="toggle-btn" (click)="toggle.emit()">
+    <i class="fa fa-angle-right" [class.fa-rotate-180]="!collapsed"></i>
+  </button>
+  
+  <nav class="nav mt-3">
+    <!-- Dashboard -->
+    <div class="nav-item">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-tachometer-alt me-2"></i> 
+        <span *ngIf="!collapsed">Dashboard</span>
+      </a>
+    </div>
+     <div class="nav-item">
+      <a   routerLink="/calender" routerLinkActive="active" class="nav-link">
+        <i class="fa-solid fa-calendar me-2"></i>
+        <span *ngIf="!collapsed">Calender</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a  routerLink = "/location" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-map-marker-alt me-2"></i> 
+        <span *ngIf="!collapsed">Locations</span>
+      </a>
+    </div>
+     <div class="nav-item">
+      <a routerLink="/overdues" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-exclamation-triangle me-2"></i> 
+        <span *ngIf="!collapsed">Overdue</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a  routerLink="/auto-emailer" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-envelope me-2"></i> 
+        <span *ngIf="!collapsed">Auto Emailer</span>
+      </a>
+    </div>
+       <div class="nav-item" *ngIf="userDetails.designation !== 'User'">
+      <a  routerLink="/input-details" routerLinkActive="active" class="nav-link" >
+       <i class="fa fa-keyboard me-2"></i>
+        <span *ngIf="!collapsed">Input Details</span>
+      </a>
+    </div>
+           <div class="nav-item" *ngIf="userDetails.designation !== 'User'">
+      <a  routerLink="/event-log" routerLinkActive="active" class="nav-link" >
+       <i class="fa fa-keyboard me-2"></i>
+        <span *ngIf="!collapsed">Event Log</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+          <div class="nav-item"  *ngIf="userDetails.designation !== 'User'">
+      <a  routerLinkActive="active" class="nav-link auditLogPad" (click)="openAuditLog()">
+        <i class="fas fa-clipboard-list me-2"></i>
+        <span *ngIf="!collapsed">Audit Log</span>
+      </a>
+    </div>
+   <span class="mx-2"><i class="fa-solid fa-user mx-2"></i>{{userDetails.designation}}</span>
+    <div class="user-info mx-3 " >
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span *ngIf="!collapsed" (click)="logOut()">Logout</span>
+    </div>
+  </div>
+
+</div>

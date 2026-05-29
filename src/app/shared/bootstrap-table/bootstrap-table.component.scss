@@ -1,0 +1,82 @@
+.bootsrtap-table {
+  min-height: 150px;
+
+  table {
+    font-size: 12px;
+    border: 1px solid rgb(243, 238, 238);
+    background-color: #fff;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  th {
+    background-color: #374664 !important;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 12px;
+    color: white;
+    padding: 7px;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 5px 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &.common-blue {
+    th {
+      background-color: #addee3;
+         color: white;
+      font-size: 12px;
+    }
+  }
+}
+
+/* Table borders */
+.table-bordered > :not(caption) > * {
+  border-color: #dddddf;
+}
+
+.table-bordered > :not(caption) > * > * {
+  border-color: #dddddf;
+}
+
+/* Disable interaction for disabled rows */
+tr.table-danger {
+  pointer-events: none;
+}
+
+/* Pagination */
+.pagination {
+  float: right;
+}
+
+/* Sticky action column */
+.fix-column {
+  position: sticky !important;
+  right: 0;
+  z-index: 2;
+  background-color: #b4cdd3;
+  width: 60px !important;
+}
+
+/* helpers */
+.textAlign {
+  text-align: center;
+}
+
+.padding {
+  padding: 2px;
+}
+
+/* Ellipsis (IMPORTANT) */
+.text-ellipsis {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

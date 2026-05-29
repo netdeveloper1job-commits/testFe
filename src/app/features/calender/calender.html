@@ -1,0 +1,102 @@
+<section class="calender-wrap">
+  <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2 page-head">
+    <div>
+      <h2 class="page-title"><i class="far fa-calendar-alt me-2"></i>Compliance Calendar</h2>
+      <p class="text-muted mb-0 small">View all compliance due dates. Reminders are sent 30 days before due date.</p>
+    </div>
+    <div class="d-flex align-items-center gap-2 filter-inline">
+    <select
+        class="form-select form-select-sm"
+        [(ngModel)]="selectedLocationId"
+        (ngModelChange)="applyLocationFilter()"
+      >
+        <option [ngValue]="null">All locations</option>
+        <option *ngFor="let loc of allLocations" [ngValue]="loc.id">
+          {{ loc.location }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="calendar-layout mt-4">
+    <div class="calendar-panel card">
+      <div class="calendar-toolbar">
+        <h3>{{ viewDate | date: 'MMMM y' }}</h3>
+        <div class="actions">
+          <button class="btn btn-link nav-btn" (click)="previousMonth()" aria-label="Previous month">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-primary today-btn" (click)="today()">Today</button>
+          <button class="btn btn-link nav-btn" (click)="nextMonth()" aria-label="Next month">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <mwl-calendar-month-view
+        [viewDate]="viewDate"
+        [events]="events"
+        [activeDayIsOpen]="false"
+        [cellTemplate]="customCellTemplate"
+        (dayClicked)="onDayClicked($event.day)"
+        (eventClicked)="onEventClicked($event.event)"
+      >
+      </mwl-calendar-month-view>
+    </div>
+<ng-template #customCellTemplate let-day="day">
+  <div class="cal-cell">
+    <div class="cal-date" 
+         [class.text-adjacent]="!day.inMonth" 
+         [class.text-current]="day.inMonth">
+      {{ day.date | date: 'd' }}
+    </div>
+
+    <div class="event-list">
+      <div *ngFor="let event of day.events"
+           class="event-badge"
+           [style.background]="event.color?.primary">
+        {{ event.title }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+    <aside class="right-panel">
+      <div class="card details-card">
+        <h4>Select a date to view details</h4>
+
+        @if (selectedDate) {
+          <p class="selected-date mb-1">{{ selectedDate | date: 'EEEE, MMM d, y' }}</p>
+
+          @if (selectedDateEvents.length) {
+            <ul>
+              @for (event of selectedDateEvents; track event.title) {
+                <li>{{ event.title }}</li>
+              }
+            </ul>
+          } @else {
+            <p class="empty-text mb-0">No compliance tasks due for this date.</p>
+          }
+        } @else {
+          <p class="empty-text mb-0">Click on a date in the calendar</p>
+        }
+      </div>
+
+      <div class="card reminders-card">
+        <h4><i class="far fa-bell me-2"></i>Upcoming Reminders (30 days)</h4>
+
+        <div class="reminder-list">
+          @for (reminder of upcomingReminders; track reminder.title) {
+            <div class="reminder-item">
+              <span class="dot"></span>
+              <div>
+                <p class="title">{{ reminder.title }}</p>
+                <small>Due {{ reminder.start | date: 'MMM d, y' }}</small>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

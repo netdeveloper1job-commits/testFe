@@ -1,0 +1,79 @@
+<section class="overdue-wrap">
+  <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+    <div>
+      <h2 class="page-title"> Overdue Compliance </h2>
+      <p class="text-muted mb-0 small">Overdue compliance items require immediate attention</p>
+    </div>
+     <div class="d-flex align-items-center gap-2 filter-inline flex-nowrap">
+      <label class="text-muted small mb-0 text-nowrap">Filter by Location:</label>
+      <select
+        class="form-select form-select-sm"
+        [(ngModel)]="selectedLocationId"
+        (ngModelChange)="applyLocationFilter()"
+      >
+        <option [ngValue]="null">All locations</option>
+        <option *ngFor="let loc of allLocations" [ngValue]="loc.id">
+          {{ loc.location }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row g-3 mt-3 p-1">
+        <div class="col-md-4">
+            <div class="info-card card-total">
+                <h6>{{ totalFormsCount }}</h6>
+                <p></p>
+                <span>Total Overdue </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card card-active">
+                <h6>{{ highRiskCount }}</h6>
+                <p></p>
+                <span>High Risk Overdue</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card card-draft">
+                <h6>{{ notAppliedCount }}</h6>
+                <p></p>
+                <span>Not Yet Applied</span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4" >
+        <app-bootstrap-table
+        [columns]="columns"
+        [dataSource]="filteredOverDues"
+        [bodyTemplate]="bodyTemplate"
+        [theme]="'common-blue'"
+        >
+    </app-bootstrap-table>
+     <ng-template #bodyTemplate let-row="row" let-column="column">
+    <ng-container *ngIf="column.dataField === 'status'">
+<span class="pill"
+  [ngClass]="{
+    'pill-success': row.status?.toLowerCase() === 'yes' || row.status?.toLowerCase() === 'applied',
+    'pill-danger': row.status?.toLowerCase() === 'no' || row.status?.toLowerCase() === 'not applied',
+    'pill-info': row.status?.toLowerCase() === 'complaint'
+  }">
+  {{ row.status }}
+</span>
+  </ng-container>
+
+  <ng-container *ngIf="column.dataField === 'riskCategory'">
+    <span class="badge"
+          [ngClass]="getRiskClass(row.complianceConfig?.riskCategory)">
+      {{ row?.riskCategory || '-' }}
+    </span>
+  </ng-container>
+
+
+      <ng-container *ngIf="column.dataField === 'daysOverdue'">
+    <span class="pill pill-warning">
+      {{ row.daysOverdue }} days
+    </span>
+  </ng-container>
+     </ng-template>
+  </div>
+</section>

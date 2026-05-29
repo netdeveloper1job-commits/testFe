@@ -1,0 +1,41 @@
+
+.tab-button {
+  background-color: #374664 !important;
+  color: white;
+  border: none;
+  font-size: 14px;
+}
+.tabButton {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.tabButton > .col-md-12 {
+  padding-left: 0;
+  padding-right: 0;
+
+}
+
+.tab-button.active {
+  background-color: #0096FF !important;
+  color: #fff;
+}
+
+.title.row.bg-primary.mx-0 {
+  border-radius: 10px;
+  background-color:#374664 !important;
+
+  .btn-group {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.form-button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #f3f3f3;
+}

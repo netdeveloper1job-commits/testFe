@@ -1,0 +1,98 @@
+<section class="indus-wrap">
+  <div class="status">
+    <div class="card">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+        <div>
+          <h2 class="title">{{ showUpdateButton ? 'Update Compliance Category' : 'Compliance Category' }}</h2>
+        </div>
+      </div>
+      <!-- <div class="col-md-6"><app-back-button></app-back-button></div> -->
+    </div>
+
+    <form [formGroup]="form">
+      <div class="row mt-4">
+        <div class="col-md-2">
+          <label for="industryTypeId">Industry Type</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 ">
+          <select
+            class="form-select select"
+            id="industryTypeId"
+            formControlName="industryTypeId"
+            [ngClass]="{ 'error-border': submitted && form.get('industryTypeId')?.hasError('required') }"
+          >
+            <option value="">Select Industry Type</option>
+            @for (item of industryTypes(); track item.id) {
+              <option [value]="item.id">{{ item.attributeName }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <label for="complianceCategoryName">Compliance Category</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="text"
+            class="form-control"
+            id="complianceCategoryName"
+            formControlName="complianceCategoryName"
+            aria-describedby="nameHelp"
+            placeholder="Enter Compliance Category"
+            [ngClass]="{ 'error-border': submitted && form.get('complianceCategoryName')?.hasError('required') }"
+          />
+        </div>
+      </div>
+    </form>
+
+    <div class="row mt-3">
+      <div class="col-md-3 d-flex">
+        @if (!showUpdateButton) {
+          <button
+            type="button"
+            class="btn btn-primary form-button"
+            [disabled]="isSubmitting"
+            (click)="addComplianceCategory('create')"
+          >
+            Save
+          </button>
+        } @else {
+          <button
+            type="button"
+            class="btn btn-primary form-button"
+            [disabled]="isSubmitting"
+            (click)="addComplianceCategory('update')"
+          >
+            Update
+          </button>
+        }
+        &nbsp;
+        <button type="button" class=" form-button mx-1" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <app-bootstrap-table
+        [columns]="columns"
+        [dataSource]="allComplianceCategories()"
+        [bodyTemplate]="actionTemplate"
+        [theme]="'common-blue'"
+      >
+      </app-bootstrap-table>
+    </div>
+  </div>
+</section>
+
+<ng-template #actionTemplate let-row="row" let-column="column">
+  @if (column.dataField === 'Action') {
+    <button type="button" class="action-icon-btn" title="Edit" (click)="edit(row)">
+      <i class="fa-solid fa-pen-to-square users-action-edit"></i>
+    </button>
+    <button type="button" class="action-icon-btn ms-2" title="Delete" (click)="delete(row.id)">
+      <i class="fa-solid fa-trash users-action-delete"></i>
+    </button>
+  }
+</ng-template>

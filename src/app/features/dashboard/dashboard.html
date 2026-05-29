@@ -1,0 +1,107 @@
+<section class="dashboard-wrap">
+  <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+    <div>
+      <h2 class="page-title">Compliance Dashboard</h2>
+      <p class="text-muted mb-0 small">Admin View - {{ currentLocationLabel }}</p>
+    </div>
+    <div class="d-flex align-items-center gap-2 filter-inline">
+      <label class="text-muted small mb-0">Filter by Location:</label>
+      <select
+        class="form-select form-select-sm"
+        [(ngModel)]="selectedLocationId"
+        (ngModelChange)="applyLocationFilter()"
+      >
+        <option [ngValue]="null">All locations</option>
+        <option *ngFor="let location of allLocations" [ngValue]="location.id">
+          {{ location.location }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="stats-grid mb-2 mt-4">
+    <div class="card stat-card">
+      <div class="stat-head">
+        <span class="icon-chip icon-blue"><i class="fas fa-map-marker-alt"></i></span>
+         <a  routerLink="/location" routerLinkActive="active" class="nav-link">
+        <small>CLICK TO VIEW</small>
+        </a>
+      </div>
+      <strong>{{ displayedLocationCount }}</strong>
+      <span>Locations</span>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-head">
+        <span class="icon-chip icon-indigo"><i class="fas fa-users"></i></span>
+       
+      </div>
+      <strong>{{ displayedUsersCount }}</strong>
+      <span>Users</span>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-head">
+        <span class="icon-chip icon-purple"><i class="far fa-folder"></i></span>
+        <a  routerLink="/location" routerLinkActive="active" class="nav-link">
+        <small>CLICK TO VIEW</small></a>
+      </div>
+      <strong>{{ displayedCategoryCount }}</strong>
+      <span>Compliance Category</span>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-head">
+        <span class="icon-chip icon-cyan"><i class="fas fa-arrow-up-right-from-square"></i></span>
+      </div>
+      <strong>{{ totalCompliancesCount }}</strong>
+      <span>Total Compliances</span>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-head">
+        <span class="icon-chip icon-yellow"><i class="fas fa-triangle-exclamation"></i></span>
+      </div>
+      <strong>{{ complianceAlertCount }}</strong>
+      <span>Compliance Alert</span>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-head">
+        <span class="icon-chip icon-red"><i class="fas fa-circle-exclamation"></i></span>
+        <a  routerLink="/overdues" routerLinkActive="active" class="nav-link">
+        <small>CLICK TO VIEW</small>
+        </a>
+      </div>
+      <strong>{{ overdueComplianceCount }}</strong>
+      <span>Overdue Compliance</span>
+    </div>
+  </div>
+
+  <div class="row g-2 mt-2">
+    <div class="col-lg-6">
+      <div class="card panel-card p-2">
+        <h6 class="fw-bold mb-1">Overall Compliance Status</h6>
+        <p class="text-muted small mb-2">Red = Overdue, Yellow = Alert (&lt; 30 days)</p>
+        <canvas id="complianceDonutChart" style="max-height: 175px;"></canvas>
+        <div class="legend mt-3 d-flex justify-content-center gap-3 my-3">
+          <span><i class="dot compliant"></i> Compliant</span>
+          <span><i class="dot warning"></i> Alert</span>
+          <span><i class="dot overdue"></i> Overdue</span>
+        </div>
+      </div>
+    </div>
+
+   <div class="col-lg-6">
+      <div class="card panel-card p-3">
+        <h6 class="fw-bold mb-1">Location-wise Compliance Status</h6>
+        <p class="text-muted small mb-2">Breakdown by department across all categories</p>
+
+        <div class="chart-container" style="position: relative; height: 175px; width: 100%;">
+          <canvas id="complianceBarChart"></canvas>
+        </div>
+
+        <div class="legend mt-3 d-flex justify-content-center gap-3">
+          <span><i class="dot compliant"></i> Compliant</span>
+          <span><i class="dot warning"></i> Alert</span>
+          <span><i class="dot overdue"></i> Overdue</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

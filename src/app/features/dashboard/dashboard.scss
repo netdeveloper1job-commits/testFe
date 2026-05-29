@@ -1,0 +1,206 @@
+.dashboard-wrap {
+  padding: .5rem;
+  background: #f3f5f8;
+  border-radius: 8px;
+  min-height: calc(100vh - 3rem);
+}
+
+.dashboard-wrap .card {
+  background: #fff;
+  border: 1px solid #e7ebf0;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.warning{
+  background: #d4a214;
+}
+
+.filter-inline {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.filter-inline .form-select {
+  width: auto;
+  min-width: 160px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: .5rem;
+}
+
+.stat-card {
+  padding: .75rem;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .stat-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .45rem;
+
+    small {
+      font-size: .55rem;
+      font-weight: 700;
+      color: #a8b0bb;
+      letter-spacing: .04em;
+    }
+  }
+
+  strong {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  span {
+    color: var(--text-muted);
+    font-size: .75rem;
+  }
+}
+
+/* Core Styling for the icon container 'chip' */
+.icon-chip {
+  width: 32px;  /* Approximately 2rem, a bit larger for clarity */
+  height: 32px; /* Set equal width and height for a square */
+  border-radius: 8px; /* Standard card corner radius to match other elements */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem; /* Adjust this to make the icon inside larger or smaller */
+}
+
+/* Color Palette based on your utility classes */
+.icon-chip {
+  /* Set a fixed size to ensure it's a perfect square */
+  width: 38px; 
+  height: 38px;
+  
+  /* Increased border-radius for that soft 'pill-square' look */
+  border-radius: 10px; 
+  
+  /* Flexbox centers the icon perfectly inside the chip */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Icon size relative to the chip */
+  font-size: 1.1rem;
+  
+  /* Ensure the chip doesn't shrink in a flex layout */
+  flex-shrink: 0;
+}
+
+/* Blue - Locations */
+.icon-blue { 
+  background-color: #eef2ff !important; 
+  color: #4338ca !important; 
+}
+
+/* Indigo - Users */
+.icon-indigo { 
+  background-color: #eef2ff !important; 
+  color: #4f46e5 !important; 
+}
+
+/* Purple - Compliance Category */
+.icon-purple { 
+  background-color: #f5f3ff !important; 
+  color: #7c3aed !important; 
+}
+
+/* Cyan - Total Compliances */
+.icon-cyan { 
+  background-color: #ecfeff !important; 
+  color: #0891b2 !important; 
+}
+
+/* Yellow - Compliance Alert */
+.icon-yellow { 
+  background-color: #fffbeb !important; 
+  color: #d97706 !important; 
+}
+
+/* Red - Overdue Compliance */
+.icon-red { 
+  background-color: #fef2f2 !important; 
+  color: #dc2626 !important; 
+}
+.panel-card { min-height: 320px; }
+
+
+
+.bar-chart {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: end;
+  gap: .6rem;
+  min-height: 180px;
+  padding: .5rem;
+  border-left: 1px solid var(--table-border);
+  border-bottom: 1px solid var(--table-border);
+  background: repeating-linear-gradient(to top, transparent 0 24%, rgba(148,163,184,.15) 24% 25%);
+}
+
+.group {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 3px;
+  min-height: 150px;
+  position: relative;
+
+  span {
+    position: absolute;
+    bottom: -18px;
+    font-size: .65rem;
+    color: var(--text-muted);
+  }
+}
+
+.bar { width: 10px; border-radius: 3px 3px 0 0; }
+.h0 { height: 0; }
+.h1 { height: 38px; }
+.h2 { height: 76px; }
+.h3 { height: 114px; }
+.h4 { height: 152px; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .8rem;
+  font-size: .72rem;
+
+  span { display: inline-flex; align-items: center; gap: .35rem; }
+}
+
+.dot { 
+  width: 10px; 
+  height: 10px; 
+  border-radius: 50%; 
+  display: inline-block; 
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.env { background: #22c55e; }
+.tax { background: #8b5cf6; }
+.hs { background: #fb923c; }
+.data { background: #ef5da8; }
+.corp { background: #06b6d4; }
+.overdue { background: #ef4444; }
+.compliant { background: #22c55e; }
+.alert { background: #f1c40f; }
+.warning { background: #f1c40f; }
+
+@media (max-width: 1199px) {
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

@@ -1,0 +1,71 @@
+<div class="manage-company">
+  <div class="card p-2">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+    <div>
+      <h2 class="page-title">Manage Compliance Category</h2>
+    </div>
+  </div>
+      <!-- <div class="col-md-6"><app-back-button></app-back-button></div> -->
+    </div>
+    <div class="row tabButton">
+      <div class="col-md-12 my-2">
+        <div class="title row bg-primary mx-0">
+           <div class="btn-group col-md p-0">
+            <a class="btn tab-button" [ngClass]="{ active: tab === 'indus-type' }" role="button"
+              (click)="selectTabs('indus-type')">Industry Type</a>
+          </div>
+          <div class="btn-group col-md p-0">
+            <a class="btn tab-button" [ngClass]="{ active: tab === 'compliance-category' }" role="button"
+              (click)="selectTabs('compliance-category')">Comp-Category</a>
+          </div>
+          <div class="btn-group col-md p-0">
+            <a class="btn tab-button" [ngClass]="{ active: tab === 'compliance-items' }" role="button"
+              (click)="selectTabs('compliance-items')">Compliance Items</a>
+          </div>
+          <div class="btn-group col-md p-0">
+            <a class="btn tab-button" [ngClass]="{
+              active: tab === 'frequency'
+            }" role="button" (click)="selectTabs('frequency')">Frequency</a>
+          </div>
+          <div class="btn-group col-md p-0">
+            <a [ngClass]="{ active: tab === 'status' }" class="btn tab-button" role="button"
+              (click)="selectTabs('status')">Status</a>
+          </div>
+          <div class="btn-group col-md p-0">
+            <a class="btn tab-button" [ngClass]="{
+              active: tab === 'users'
+            }" role="button" (click)="selectTabs('users')">Users</a>
+          </div>
+            <div class="btn-group col-md p-0">
+            <a class="btn tab-button" [ngClass]="{
+              active: tab === 'locations'
+            }" role="button" (click)="selectTabs('locations')">Locations</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+@if (tab === 'indus-type'){
+  <app-industry-type></app-industry-type>
+}
+@if (tab === 'compliance-category') {
+<app-indus-type-and-compliance-category></app-indus-type-and-compliance-category>
+}
+@if (tab === 'compliance-items') {
+<app-compliance-items></app-compliance-items>
+}
+@if (tab === 'frequency') {
+<app-frequency></app-frequency>
+}
+
+@if (tab === 'status') {
+<app-status></app-status>
+}
+
+@if (tab === 'users') {
+<app-users></app-users>
+}
+@if (tab === 'locations') {
+<app-locations></app-locations>
+}

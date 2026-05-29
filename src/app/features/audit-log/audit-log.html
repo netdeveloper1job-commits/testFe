@@ -1,0 +1,30 @@
+<div class="auditLog-wrap">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+    <div>
+      <h2 class="page-title">Audit Logs</h2>
+      <p class="text-muted mb-0 small">View all audit logs.</p>
+    </div>
+  </div>
+    <div class="row mt-4">
+      <app-bootstrap-table
+  [columns]="columns"
+  [dataSource]="allAuditLogs"
+  [bodyTemplate]="bodyTemplate"
+  [theme]="'common-blue'"
+>
+
+<ng-template #bodyTemplate let-item="row" let-column="column">
+  <ng-container *ngIf="column.dataField === 'name'">
+    {{ item?.user?.name }}
+  </ng-container>
+  <ng-container *ngIf="column.dataField === 'loginTime'">
+    {{ item?.loginTime | date:'dd/MM/yyyy | HH:mm:ss' }}
+  </ng-container>
+    <ng-container *ngIf="column.dataField === 'logOutTime'">
+    {{ item?.logOutTime | date:'dd/MM/yyyy | HH:mm:ss' }}
+  </ng-container>
+</ng-template>
+
+</app-bootstrap-table>
+  </div>
+</div>

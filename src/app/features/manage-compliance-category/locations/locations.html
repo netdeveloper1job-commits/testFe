@@ -1,0 +1,87 @@
+<section class="locations-wrap">
+  <div class="status">
+    <div class="card">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+        <div>
+          <h2 class="title">{{ showUpdateButton ? 'Update Location' : 'Add Location' }}</h2>
+        </div>
+      </div>
+      <!-- <div class="col-md-6"><app-back-button></app-back-button></div> -->
+    </div>
+
+    <form [formGroup]="form">
+      <div class="row mt-4">
+        <div class="col-md-2">
+          <label for="exampleInputLocation">Location</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input type="text" class="form-control" id="exampleInputLocation" formControlName="location"
+            aria-describedby="nameHelp" placeholder="Enter Location"
+            [ngClass]="{ 'error-border': submitted && form.get('location')?.hasError('required') }" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <label for="exampleInputAddress">Address</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input type="text" class="form-control" id="exampleInputAddress" formControlName="address"
+            aria-describedby="nameHelp" placeholder="Enter Address"
+            [ngClass]="{ 'error-border': submitted && form.get('address')?.hasError('required') }" />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <label for="exampleInputIndustryType">Industry Type</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 ">
+          <select class="form-select select" id="industryTypeId" formControlName="industryTypeId"
+            [ngClass]="{ 'error-border': submitted && form.get('industryTypeId')?.hasError('required') }">
+            <option value="">Select Industry Type</option>
+            @for (item of industryTypes(); track item.id) {
+            <option [value]="item.id">{{ item.attributeName }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </form>
+
+    <div class="row mt-3">
+      <div class="col-md-3">
+        @if (!showUpdateButton) {
+        <button type="button" class="form-button" [disabled]="isSubmitting" (click)="addLocation('create')">
+          Save
+        </button>
+        } @else {
+        <button type="button" class=" form-button" [disabled]="isSubmitting" (click)="addLocation('update')">
+          Update
+        </button>
+        }
+        &nbsp;
+        <button type="button" class="mx-1 form-button" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div class="mt-2">
+      <app-bootstrap-table [columns]="columns" [dataSource]="allLocations()" [bodyTemplate]="bodyTemplate"
+        [theme]="'common-blue'">
+      </app-bootstrap-table>
+    </div>
+  </div>
+</section>
+<ng-template #bodyTemplate let-item="row" let-column="column">
+  <ng-container *ngIf="column.dataField === 'Action'">
+    @if (column.dataField === 'Action') {
+    <button type="button" class="action-icon-btn" title="Edit" (click)="edit(item)">
+      <i class="fa-solid fa-pen-to-square users-action-edit"></i>
+    </button>
+    <button type="button" class="action-icon-btn ms-2" title="Delete" (click)="delete(item.id)">
+      <i class="fa-solid fa-trash users-action-delete"></i>
+    </button>
+    }
+  </ng-container>
+  <ng-container *ngIf="column.dataField === 'industryTypeId'">
+    {{item?.industryType.attributeName}}
+  </ng-container>
+</ng-template>

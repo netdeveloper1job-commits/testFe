@@ -1,0 +1,26 @@
+<div class="layout-wrapper" [class.sidebar-collapsed]="isSidebarCollapsed">
+
+  <!-- Global Loader -->
+  <div class="global-loader" *ngIf="isLoading()">
+    <div class="loader-spinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar-container">
+    <app-sidebar
+      [collapsed]="isSidebarCollapsed"
+      (toggle)="toggleSidebar()"
+      ngSkipHydration>
+    </app-sidebar>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

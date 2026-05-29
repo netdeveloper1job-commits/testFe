@@ -1,0 +1,82 @@
+<section class="industry-wrap">
+  <div class="status">
+    <div class="card">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+        <div>
+          <h2 class="title">{{ showUpdateButton ? 'Update Industry Type' : 'Industry Type' }}</h2>
+        </div>
+      </div>
+      <!-- <div class="col-md-6"><app-back-button></app-back-button></div> -->
+    </div>
+
+    <form [formGroup]="form">
+      <div class="row mt-4">
+        <div class="col-md-2">
+          <label for="exampleInputIndustryType">Industry Type</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputIndustryType"
+            formControlName="attributeName"
+            aria-describedby="nameHelp"
+            placeholder="Enter Industry Type"
+            [ngClass]="{ 'error-border': submitted && form.get('attributeName')?.hasError('required') }"
+          />
+        </div>
+      </div>
+    </form>
+
+    
+
+    <div class="row mt-3">
+      <div class="col-md-3 d-flex">
+        @if (!showUpdateButton) {
+          <button
+            type="button"
+            class="btn btn-primary form-button"
+            [disabled]="isSubmitting"
+            (click)="addIndustryType('create')"
+          >
+            Save
+          </button>
+        } @else {
+          <button
+            type="button"
+            class="btn btn-primary form-button"
+            [disabled]="isSubmitting"
+            (click)="addIndustryType('update')"
+          >
+            Update
+          </button>
+        }
+        &nbsp;
+        <button type="button" class="mx-1 form-button" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <app-bootstrap-table
+        [columns]="columns"
+        [dataSource]="allIndustryTypes()"
+        [bodyTemplate]="actionTemplate"
+        [theme]="'common-blue'"
+      >
+      </app-bootstrap-table>
+    </div>
+  </div>
+</section>
+
+<ng-template #actionTemplate let-row="row" let-column="column">
+  @if (column.dataField === 'Action') {
+    <button type="button" class="action-icon-btn" title="Edit" (click)="edit(row)">
+      <i class="fa-solid fa-pen-to-square users-action-edit"></i>
+    </button>
+    <button type="button" class="action-icon-btn ms-2" title="Delete" (click)="delete(row.id)">
+      <i class="fa-solid fa-trash users-action-delete"></i>
+    </button>
+  }
+</ng-template>

@@ -1,0 +1,180 @@
+<div class="modal-header">
+  <h5 class="modal-title col-md-8">Compliance Item</h5>
+  <button
+    type="button"
+    class="close crossbtn"
+    aria-hidden="true"
+    role="button"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <label for="locationName">Location</label>
+      </div>
+      <div class="col-md-8 column-field-value second_row">
+        <input
+          type="text"
+          id="locationName"
+          class="form-control mt-1"
+          formControlName="locationName"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="complianceConfigId">Compliance Item</label>
+      </div>
+      <div class="col-md-8 column-field-value second_row">
+        <select
+          id="complianceConfigId"
+          class="form-control mt-1"
+          formControlName="complianceConfigId"
+          [ngClass]="{
+            'error-border': submitted && form.get('complianceConfigId')?.hasError('required'),
+          }"
+        >
+          <option value="">Select compliance item</option>
+          @for (item of complianceConfigs; track item.id) {
+            <option [value]="item.id">{{ getComplianceItemLabel(item) }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="riskCategory">Risk Category</label>
+      </div>
+      <div class="col-md-8 column-field-value second_row">
+        <input
+          type="text"
+          id="riskCategory"
+          class="form-control mt-1"
+          formControlName="riskCategory"
+          readonly
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="userId">Responsibility(User)</label>
+      </div>
+      <div class="col-md-8 column-field-value second_row">
+        <select
+          id="userId"
+          class="form-control mt-1"
+          formControlName="userId"
+          [ngClass]="{ 'error-border': submitted && form.get('userId')?.hasError('required') }"
+        >
+          <option value="">Select user</option>
+          @for (user of users; track user.id) {
+            <option [value]="user.id">{{ user.name }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="dueDate">Due Date</label>
+      </div>
+      <div class="col-md-8 column-field-value second_row">
+        <input
+          type="date"
+          id="dueDate"
+          class="form-control mt-1"
+          formControlName="dueDate"
+          [ngClass]="{ 'error-border': submitted && form.get('dueDate')?.hasError('required') }"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="status">Action</label>
+      </div>
+      <div class="col-md-3 column-field-value second_row">
+        <select
+          id="activity"
+          class="form-control mt-1"
+          formControlName="activity"
+           [ngClass]="{ 'error-border': submitted && form.get('activity')?.hasError('required') }"
+        >
+          <option value="">Select Action</option>
+          <option value="Applied">Applied</option>
+          <option value="Not Applied">Not Applied</option>
+          <option value="Compliant">Compliant</option>
+        </select>
+      </div>
+
+      <div class="col-md-1">Applied</div>
+      <div class="col column-field-value second_row d-flex">
+        <input type="hidden" formControlName="ifApplied" />
+        <input
+          type="file"
+          class="form-control mt-1"
+          accept="image/png, image/jpeg, application/pdf, image/gif"
+          (change)="detectIfAppliedFiles($event)"
+          [disabled]="!isAppliedSelected"
+          [ngClass]="{ 'error-border': submitted && form.get('ifApplied')?.hasError('required') }"
+        />
+        <div *ngIf="ifAppliedPreview" class="mt-2 mx-1">
+          <a [href]="env + '/' + ifAppliedPreview" target="_blank">
+            <img [src]="env + '/' + ifAppliedPreview" class="avatar" />
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="complianceCompletionDate">Compliance Completion Date</label>
+      </div>
+      <div class="col-md-8 column-field-value second_row">
+        <input
+          type="date"
+          id="complianceCompletionDate"
+          class="form-control mt-1"
+          [disabled]="!(form.get('activity')?.value === 'Compliant')"
+          formControlName="complianceCompletionDate"
+          [ngClass]="{
+            'error-border': submitted && form.get('complianceCompletionDate')?.hasError('required'),
+          }"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="certificateUpload">Complaince Certificate</label>
+      </div>
+      <div class="col-md-8 column-field-value second_row d-flex">
+        <input type="hidden" formControlName="certificateURL" />
+        <input
+          type="file"
+          id="certificateUpload"
+          class="form-control mt-1"
+          accept="image/png, image/jpeg, application/pdf, image/gif"
+          (change)="detectCertificateFiles($event)"
+          [disabled]="!isCertificateEnabled"
+          [ngClass]="{
+            'error-border': submitted && form.get('certificateURL')?.hasError('required'),
+          }"
+        />
+        <div *ngIf="certificatePreview" class="mt-2">
+          <a [href]="env + '/' + certificatePreview" target="_blank">
+            <img [src]="env + '/' + certificatePreview" class="avatar" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <button
+          class="form-button"
+          type="button"
+          [disabled]="isSubmitting"
+          (click)="saveComplianceTracker()"
+        >
+          {{ showUpdateButton ? 'Update' : 'Save' }}
+        </button>
+        <button class="form-button mx-1" type="button" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

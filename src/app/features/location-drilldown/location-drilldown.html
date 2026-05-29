@@ -1,0 +1,80 @@
+<section class="location-wrap">
+  <!-- HEADER -->
+  <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2 page-head">
+    <div class="header">
+      <h2 class="page-title">
+        Location Drilldown
+        @if (!showComplianceTracker) {
+          <button
+            type="button"
+            class="view-icon-btn mx-2"
+            [class.active]="viewMode === 'tile'"
+            (click)="setViewMode('tile')"
+            title="Tile View"
+          >
+            <i class="fa-solid fa-sliders"></i>
+          </button>
+
+          <button
+            type="button"
+            class="view-icon-btn mx-1"
+            [class.active]="viewMode === 'detailed'"
+            (click)="setViewMode('detailed')"
+            title="Detailed View"
+          >
+            <i class="fa-solid fa-list"></i>
+          </button>
+        }
+      </h2>
+      <div class="breadcrumb-line">
+        <span
+          class="breadcrumb-item"
+          [class.active]="!selectedIndustryId"
+          role="button"
+          (click)="selectedIndustryId ? backToAllLocations() : null"
+        >
+          All Locations
+        </span>
+        @if (selectedLocationName) {
+          <span class="breadcrumb-separator">></span>
+          <span
+            class="breadcrumb-item"
+            [class.active]="!selectedComplianceCategoryName"
+            role="button"
+            (click)="selectedComplianceCategoryName ? backToLocationCategories() : null"
+          >
+            {{ selectedLocationName }}
+          </span>
+        }
+        @if (selectedComplianceCategoryName) {
+          <span class="breadcrumb-separator">></span>
+          <span class="breadcrumb-item active">{{ selectedComplianceCategoryName }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 filter-inline">
+      @if (!selectedIndustryId) {
+        <!-- <button class="form-button">Add Location</button> -->
+      } @else if (showComplianceTracker) {
+        <button class="form-button" (click)="openManageComplianceModal()">Enter Details</button>
+      }
+    </div>
+  </div>
+
+  @if (!selectedIndustryId) {
+    <app-location [viewMode]="viewMode"></app-location>
+  } @else if (showComplianceTracker) {
+    <app-location-compliance-tracker
+      [locationId]="selectedLocationId"
+      [complianceCategoryId]="selectedComplianceCategoryId"
+      (editTracker)="openManageComplianceModal($event)"
+    ></app-location-compliance-tracker>
+  } @else {
+    <app-location-details
+      [industryId]="selectedIndustryId"
+      [industryName]="selectedIndustryName"
+      [viewMode]="viewMode"
+    ></app-location-details>
+  }
+</section>

@@ -1,0 +1,220 @@
+/* Light Theme */
+:root[data-theme='light'] {
+  --bg-body:#f5f7f8;
+  --bg-content: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-hover: #f8f9fa;
+  --text-color: #212529;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --border-focus: #06A8F6;
+  --btn-primary:  #0da2e7;;
+  --btn-primary-hover: #3867d6;
+  --btn-secondary: #6c757d;
+  --btn-secondary-hover: #5a6268;
+  --btn-success: #2ecc71;
+  --btn-success-hover: #27ae60;
+  --btn-danger: #e74c3c;
+  --btn-danger-hover: #c0392b;
+  --btn-google: #db4437;
+  --btn-google-hover: #c23321;
+  --btn-facebook: #4267b2;
+  --btn-facebook-hover: #365899;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --input-focus-shadow: rgba(75, 123, 236, 0.25);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --menu-background: #D9F1FB;
+
+  /* Table colors */
+  --table-border: #e9ecef;
+  --table-header-bg: #f8f9fa;
+  --table-header-border: #dee2e6;
+  --table-body-color: #495057;
+  --table-hover-bg: #f8f9fa;
+  --table-body-bg: #ffffff;
+
+  /* Status badge colors */
+  --badge-success-bg: #d4f5dd;
+  --badge-success-color: #28a745;
+  --badge-warning-bg: #ffe9b3;
+  --badge-warning-color: #e6a700;
+  --badge-info-bg: #c9f2ff;
+  --badge-info-color: #0aa2c0;
+  --badge-danger-bg: #ffd6d6;
+  --badge-danger-color: #d9534f;
+   --badge-secondary-bg: #e2e3e5; /* for inactive */
+  --badge-secondary-color: #41464b;
+
+  /* Dropdown colors */
+  --dropdown-shadow: rgba(0, 0, 0, 0.15);
+  --dropdown-item-hover: #f8f9fa;
+
+  /* Pagination colors */
+  --pagination-active-bg: #08A1F7;
+  --pagination-active-border: #08A1F7;
+  --pagination-active-color: #fff;
+
+  /* Gray scale colors */
+  --gray-100: #f4f6f9;
+  --gray-200: #e9ecef;
+  --gray-300: #ced4da;
+  --gray-400: #adb5bd;
+  --gray-500: #6c757d;
+  --gray-600: #495057;
+  --gray-700: #343a40;
+  --gray-800: #212529;
+
+  /* Attendance status colors */
+  --attendance-present-bg: #d4f5dd;
+  --attendance-present-color: #28a745;
+  --attendance-present-border: #c3e6cb;
+  --attendance-absent-bg: #ffd6d6;
+  --attendance-absent-color: #d9534f;
+  --attendance-absent-border: #f5c6cb;
+  --attendance-leave-bg: #fff3cd;
+  --attendance-leave-color: #856404;
+  --attendance-leave-border: #ffeaa7;
+  --attendance-bar-bg: #e5e7eb;
+  --attendance-percent-color: #212529;
+  --attendance-present-status: #10b981;
+  --attendance-absent-status: #ef4444;
+  --attendance-leave-status: #f59e0b;
+  --attendance-holiday-status: #6b7280;
+
+  /* Annual attendance table colors */
+  --table-header-bg: #f8f9fa;
+  --table-header-border: #dee2e6;
+  --table-header-bottom-border: #d1d5db;
+  --table-body-bg: #ffffff;
+  --table-body-hover: #f9fafb;
+  --table-border: #e5e7eb;
+  --table-text-muted: #6b7280;
+  --table-text-primary: #111827;
+  --table-student-info-bg: #fafbfc;
+  --table-summary-bg: #fffbeb;
+  --table-summary-row-bg: #f3f4f6;
+  --table-summary-label-bg: #e5e7eb;
+  --table-months-header-bg: #e0e7ff;
+  --table-months-header-color: #4338ca;
+  --table-summary-header-bg: #fef3c7;
+  --table-summary-header-color: #92400e;
+  --table-attendance-excellent-bg: #d1fae5;
+  --table-attendance-excellent-color: #065f46;
+  --table-attendance-good-bg: #dbeafe;
+  --table-attendance-good-color: #1e40af;
+  --table-attendance-fair-bg: #fef3c7;
+  --table-attendance-fair-color: #92400e;
+  --table-attendance-poor-bg: #fee2e2;
+  --table-attendance-poor-color: #991b1b;
+}
+
+/* Dark Theme */
+:root[data-theme='dark'] {
+  --bg-body: #121212;
+  --bg-content: #1e1e1e;
+  --bg-card: #252525;
+  --bg-hover: #333;
+  --text-color: #e0e0e0;
+  --text-muted: #adb5bd;
+  --border-color: #333;
+  --border-focus: #5dade2;
+  --btn-primary: #5dade2;
+  --btn-primary-hover: #48c9b0;
+  --btn-secondary: #566573;
+  --btn-secondary-hover: #4a5a66;
+  --btn-success: #58d68d;
+  --btn-success-hover: #52be80;
+  --btn-danger: #ec7063;
+  --btn-danger-hover: #e74c3c;
+  --btn-google: #db4437;
+  --btn-google-hover: #c23321;
+  --btn-facebook: #4267b2;
+  --btn-facebook-hover: #365899;
+  --input-bg: #2c2c2c;
+  --input-border: #495057;
+  --input-focus-shadow: rgba(93, 173, 226, 0.25);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+  /* Table colors */
+  --table-border: #333;
+  --table-header-bg: #2c2c2c;
+  --table-header-border: #444;
+  --table-body-color: #e0e0e0;
+  --table-hover-bg: #333;
+  --table-body-bg: #252525;
+
+  /* Status badge colors */
+  --badge-success-bg: #1a4d3a;
+  --badge-success-color: #58d68d;
+  --badge-warning-bg: #4d3d1a;
+  --badge-warning-color: #f7dc6f;
+  --badge-info-bg: #1a3d4d;
+  --badge-info-color: #5dade2;
+  --badge-danger-bg: #4d1a1a;
+  --badge-danger-color: #ec7063;
+
+  /* Dropdown colors */
+  --dropdown-shadow: rgba(0, 0, 0, 0.4);
+  --dropdown-item-hover: #333;
+
+  /* Pagination colors */
+  --pagination-active-bg: #5dade2;
+  --pagination-active-border: #5dade2;
+  --pagination-active-color: #fff;
+
+  /* Gray scale colors - Dark mode variants */
+  --gray-100: #1e1e1e;
+  --gray-200: #252525;
+  --gray-300: #333;
+  --gray-400: #495057;
+  --gray-500: #adb5bd;
+  --gray-600: #e0e0e0;
+  --gray-700: #f0f0f0;
+  --gray-800: #ffffff;
+
+  /* Attendance status colors */
+  --attendance-present-bg: #1a4d3a;
+  --attendance-present-color: #58d68d;
+  --attendance-present-border: #2d5a3d;
+  --attendance-absent-bg: #4d1a1a;
+  --attendance-absent-color: #ec7063;
+  --attendance-absent-border: #6d2a2a;
+  --attendance-leave-bg: #4d3d1a;
+  --attendance-leave-color: #f7dc6f;
+  --attendance-leave-border: #6d5a2a;
+  --attendance-bar-bg: #333;
+  --attendance-percent-color: #e0e0e0;
+  --attendance-present-status: #10b981;
+  --attendance-absent-status: #ef4444;
+  --attendance-leave-status: #f59e0b;
+  --attendance-holiday-status: #6b7280;
+
+  /* Annual attendance table colors */
+  --table-header-bg: #2c2c2c;
+  --table-header-border: #444;
+  --table-header-bottom-border: #444;
+  --table-body-bg: #252525;
+  --table-body-hover: #333;
+  --table-border: #333;
+  --table-text-muted: #adb5bd;
+  --table-text-primary: #e0e0e0;
+  --table-student-info-bg: #2c2c2c;
+  --table-summary-bg: #3d3d2a;
+  --table-summary-row-bg: #333;
+  --table-summary-label-bg: #333;
+  --table-months-header-bg: #3a335a;
+  --table-months-header-color: #8a7ed5;
+  --table-summary-header-bg: #4d3d2a;
+  --table-summary-header-color: #f7dc6f;
+  --table-attendance-excellent-bg: #1a4d3a;
+  --table-attendance-excellent-color: #58d68d;
+  --table-attendance-good-bg: #1a3d4d;
+  --table-attendance-good-color: #5dade2;
+  --table-attendance-fair-bg: #4d3d1a;
+  --table-attendance-fair-color: #f7dc6f;
+  --table-attendance-poor-bg: #4d1a1a;
+  --table-attendance-poor-color: #ec7063;
+}

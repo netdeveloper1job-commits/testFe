@@ -1,0 +1,90 @@
+<div class="location-header">
+  <div class="breadcrumb-text">
+    <i class="fa-solid fa-file-lines me-2"></i>
+    {{ categoryName }} — {{ locationName  }}
+  </div>
+<div class="item-count mx-4">
+    <b>{{ dataSource.length }} items</b>
+  </div>
+</div>
+<app-bootstrap-table
+  [columns]="columns"
+  [dataSource]="dataSource"
+  [bodyTemplate]="bodyTemplate"
+  [theme]="'common-blue'"
+>
+</app-bootstrap-table>
+
+<ng-template #bodyTemplate let-row="row" let-column="column">
+
+  <!-- Action -->
+  <ng-container *ngIf="column.dataField === 'Action'">
+    <button type="button" class="action-icon-btn" title="Edit" (click)="edit(row)">
+      <i class="fa-solid fa-pen-to-square users-action-edit"></i>
+    </button>
+    <button type="button" class="action-icon-btn ms-2" title="Delete" (click)="delete(row.id)">
+      <i class="fa-solid fa-trash users-action-delete"></i>
+    </button>
+  </ng-container>
+
+  <!-- Compliance Item -->
+  <ng-container *ngIf="column.dataField === 'complianceItemName'">
+    {{ row.complianceConfig?.complianceItem }}
+  </ng-container>
+
+  <!-- Risk Category -->
+  <ng-container *ngIf="column.dataField === 'riskCategory'">
+    <span class="badge"
+          [ngClass]="getRiskClass(row.complianceConfig?.riskCategory)">
+      {{ row.complianceConfig?.riskCategory || '-' }}
+    </span>
+  </ng-container>
+
+  <!-- Activity -->
+  <ng-container *ngIf="column.dataField === 'activity'">
+    <span class="badge"
+          [ngClass]="getStatusClass(row.activity)">
+      {{ row.activity || '-' }}
+    </span>
+  </ng-container>
+
+
+  <!-- Status -->
+  <ng-container *ngIf="column.dataField === 'status'">
+    <span class="badge"
+          [ngClass]="getStatusClass(row.status)">
+      {{ row.status || '-' }}
+    </span>
+  </ng-container>
+
+  <!-- Due Date -->
+  <ng-container *ngIf="column.dataField === 'dueDate'">
+    {{ row.dueDate | date }}
+  </ng-container>
+
+  <!-- Responsibility -->
+  <ng-container *ngIf="column.dataField === 'responsibilityName'">
+    {{ row.user?.name }}
+  </ng-container>
+
+  <!-- Doc -->
+  <ng-container *ngIf="column.dataField === 'doc'">
+    <ng-container *ngIf="row?.doc; else noDoc">
+      <a [href]="env + '/' + row.doc" target="_blank">
+        <img class="browse-quote-image" [src]="env + '/' + row.doc" />
+      </a>
+    </ng-container>
+    <ng-template #noDoc>-</ng-template>
+  </ng-container>
+
+  <!-- Certificate -->
+  <ng-container *ngIf="column.dataField === 'certificateURL'">
+    <ng-container *ngIf="row?.complianceCertificate; else noCertificate">
+      <a [href]="env + '/' + row.complianceCertificate" target="_blank">
+        <img class="browse-quote-image" [src]="env + '/' + row.complianceCertificate" />
+      </a>
+    </ng-container>
+    <ng-template #noCertificate>-</ng-template>
+  </ng-container>
+
+</ng-template>

@@ -1,0 +1,66 @@
+<div class="bootsrtap-table" [ngClass]="theme" style="overflow-x: auto;">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <!-- Change 'columns' to 'visibleColumns' here -->
+        <th *ngFor="let column of visibleColumns; let i=index" [ngStyle]="column.style" [ngClass]="{
+          'fix-column': column.dataField === 'Action',
+        }">
+          <span *ngIf="!column.isHeaderTemplate">{{ column.caption }}</span>
+          <ng-container *ngIf="column.isHeaderTemplate">
+            <ng-template *ngTemplateOutlet="headerTemplate; context: { column: column }"></ng-template>
+          </ng-container>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="pagination !== true">
+        <tr *ngFor="let item of dataSource; let i=index" [ngClass]="{
+          'table-danger': item?.rowDisabled === 'true',
+          'border-bottom': sales && (i % 2 !== 0),
+        }">
+          <!-- Change 'columns' to 'visibleColumns' here -->
+          <ng-container *ngFor="let column of visibleColumns; let j=index">
+            <td [ngStyle]="getType(column) === 'function'? column.style(item) : column.style" [ngClass]="{
+              'fix-column': column.dataField === 'Action',
+            }">
+              <ng-container *ngIf="!column.isTemplate">
+                <div [ngClass]="{ 'text-ellipsis': column.isTooltip }" [tooltip]="column.isTooltip ? item[column.dataField] ?? '-' : ''">
+                  {{ item[column.dataField] ?? "-" }}
+                </div>
+              </ng-container>
+              <ng-container *ngIf="column.isTemplate">
+                <ng-template *ngTemplateOutlet="bodyTemplate; context: { row: item, column: column, index: i }"></ng-template>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+
+      <!-- Repeat the same change for paginated section -->
+      <ng-container *ngIf="pagination === true && dataSource?.length > 0">
+        <tr *ngFor="let item of dataSource | paginate : paginationConfig; let i = index" [ngClass]="{
+          'table-danger': item?.rowDisabled === 'true',
+          'border-bottom': sales && (i % 2 !== 0),
+        }">
+          <ng-container *ngFor="let column of visibleColumns">
+            <td [ngStyle]="column.style">
+              <ng-container *ngIf="!column.isTemplate">{{ item[column.dataField] ?? "-" }}</ng-container>
+              <ng-container *ngIf="column.isTemplate">
+                <ng-template *ngTemplateOutlet="bodyTemplate; context: { row: item, column: column, index: i }"></ng-template>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+
+      <!-- Update colspan to use visibleColumns -->
+      <tr *ngIf="dataSource?.length == 0 || dataSource?.length == undefined">
+        <td [attr.colspan]="visibleColumns?.length" class="text-center">
+            <b>No Data Found.</b>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

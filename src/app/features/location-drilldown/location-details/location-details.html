@@ -1,0 +1,70 @@
+ <section class="locationDetails-wrap">
+ <div class="title-view" *ngIf="viewMode === 'tile'">
+    <div class="location-cards-grid" *ngIf="categories().length > 0">
+      <article
+  class="location-card"
+  (click)="openComplianceTracker(item)"
+  *ngFor="let item of categories(); trackBy: trackByIndex"
+>
+
+  <div class="card-top-row">
+    <div class="icon-badge">
+      <i class="fa-regular fa-building"></i>
+    </div>
+    <i class="fa-solid fa-angle-right arrow-icon"></i>
+  </div>
+
+  <h3 class="location-name">{{ item.complianceCategoryName }}</h3>
+
+  <!-- STATUS FOOTER -->
+  <div class="card-footer-row">
+    <div class="status-list">
+
+      <!-- 🟢 Complaint -->
+      <span class="status-item">
+        <span class="status-dot green"></span>
+        {{ item.totalComplaints ?? 0 }}
+      </span>
+
+      <!-- 🟡 Alert -->
+      <span class="status-item">
+        <span class="status-dot yellow"></span>
+        {{ item.totalAlert || 0 }}
+      </span>
+
+      <!-- 🔴 Overdue -->
+      <span class="status-item">
+        <span class="status-dot red"></span>
+        {{ item.totalOverdue || 0 }}
+      </span>
+
+    </div>
+
+    <span class="total-text">
+    {{ item.totalComplianceTrackers || 0 }} total
+    </span>
+  </div>
+
+</article>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="text-muted small mt-3" *ngIf="categories().length === 0">
+      No Categories found.
+    </div>
+  </div>
+    <div class="detailed-view mt-4" *ngIf=" viewMode === 'detailed'">
+    <app-bootstrap-table
+      [columns]="columns"
+      [dataSource]="categories()"
+      [bodyTemplate]="bodyTemplate"
+      [theme]="'common-blue'"
+    >
+    </app-bootstrap-table>
+    <ng-template #bodyTemplate let-item="row" let-column="column">
+  <ng-container *ngIf="column.dataField === 'industry'">
+    {{item?.industryType.attributeName}}
+  </ng-container>
+</ng-template>
+  </div>
+  </section>

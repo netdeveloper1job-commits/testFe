@@ -1,0 +1,54 @@
+<section class="location-wrap">
+  <!-- TILE VIEW -->
+  <div class="title-view" *ngIf="viewMode === 'tile'">
+    <div class="location-cards-grid" *ngIf="allLocations.length > 0">
+      <article
+        class="location-card"
+        (click)="openLocationDetails(item)"
+        *ngFor="let item of allLocations; trackBy: trackByIndex"
+      >
+        <div class="card-top-row" >
+          <div class="icon-badge">
+            <i class="fa-regular fa-building"></i>
+          </div>
+          <i class="fa-solid fa-angle-right arrow-icon" (click)="openLocationDetails(item)"></i>
+        </div>
+
+        <h3 class="location-name">{{ item.location }}</h3>
+        <p class="location-address">{{ item.address }}</p>
+
+        <div class="card-footer-row">
+          <div class="status-list">
+            <span class="status-item">
+              <span class="status-dot green"></span>{{ item.grandTotals?.totalComplaints || 0}}
+            </span>
+            <span class="status-item">
+              <span class="status-dot yellow"></span>{{ item.grandTotals?.totalAlert || 0 }}
+            </span>
+            <span class="status-item">
+              <span class="status-dot red"></span>{{ item.grandTotals?.totalOverdue || 0 }}
+            </span>
+          </div>
+
+          <span class="total-text">{{ item.grandTotals?.totalTrackers || 0 }} total</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="text-muted small mt-3" *ngIf="allLocations.length === 0">
+      No locations found.
+    </div>
+  </div>
+
+  <!-- DETAILED VIEW -->
+  <div class="detailed-view mt-4" *ngIf=" viewMode === 'detailed'">
+    <app-bootstrap-table
+      [columns]="columns"
+      [dataSource]="allLocations"
+      [bodyTemplate]="bodyTemplate"
+      [theme]="'common-blue'"
+    >
+    </app-bootstrap-table>
+  </div>
+</section>

@@ -1,0 +1,70 @@
+<section class="section-wrap">
+  <div class="status">
+    <div class="card">
+      <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+        <div>
+          <h2 class="page-title">{{ showUpdateButton ? 'Update Status' : 'Status' }}</h2>
+        </div>
+      </div>
+      <!-- <div class="col-md-6"><app-back-button></app-back-button></div> -->
+    </div>
+
+    <form [formGroup]="form">
+      <div class="row mt-4">
+        <div class="col-md-2">
+          <label for="exampleInputStatus">Status</label>
+        </div>
+        <div class="col-md-5 field-value mb-1 input">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputStatus"
+            formControlName="attributeName"
+            aria-describedby="nameHelp"
+            placeholder="Enter SOP Status"
+            [ngClass]="{ 'error-border': submitted && form.get('attributeName')?.hasError('required') }"
+          />
+        </div>
+      </div>
+    </form>
+
+    <div class="row mt-3">
+      <div class="col-md-3">
+        @if (!showUpdateButton) {
+          <button type="button" class="btn btn-primary form-button" [disabled]="isSubmitting" (click)="addStatus('create')">
+            Save
+          </button>
+        } @else {
+          <button type="button" class="btn btn-primary form-button" [disabled]="isSubmitting" (click)="addStatus('update')">
+            Update
+          </button>
+        }
+        &nbsp;
+        <button type="button" class="btn btn-primary mx-1 form-button" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <app-bootstrap-table
+        [columns]="columns"
+        [dataSource]="allStatuses()"
+        [bodyTemplate]="bodyTemplate"
+        [theme]="'common-blue'"
+      >
+      </app-bootstrap-table>
+    </div>
+  </div>
+</section>
+
+<ng-template #bodyTemplate let-item="row" let-column="column">
+  @if (column.dataField === 'Action') {
+    <button type="button" class="action-icon-btn" title="Edit" (click)="edit(item)">
+      <i class="fa-solid fa-pen-to-square users-action-edit"></i>
+    </button>
+    <button type="button" class="action-icon-btn ms-2" title="Delete" (click)="delete(item.id)">
+      <i class="fa-solid fa-trash users-action-delete"></i>
+    </button>
+  }
+</ng-template>

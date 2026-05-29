@@ -1,0 +1,67 @@
+.compliance-tracker {
+  background: #f3f5f8;
+  border-radius: 8px;
+  min-height: calc(100vh - 3rem);
+}
+  img.browse-quote-image {
+    width: 20px;
+    border-radius: 52%;
+    height: 20px;
+  }
+  .badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Risk */
+.badge-danger {
+  background-color: #ffe5e5;
+  color: #d93025;
+}
+
+.badge-warning {
+  background-color: #fff4e5;
+  color: #f9a825;
+}
+
+.badge-low {
+  background-color: #ece9e5;
+  color: #8f8c87;
+}
+
+.badge-success {
+  background-color: rgb(204, 204, 42);
+  color: white;
+}
+
+.badge-secondary {
+  background-color: rgb(248, 57, 57);
+  color: white;
+}
+
+.badge-info {
+  background-color: #8299aa;
+  color: white;
+}
+.location-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.breadcrumb-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.item-count {
+  font-size: 13px;
+  color: #666;
+}

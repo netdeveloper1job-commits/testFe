@@ -1,0 +1,97 @@
+.overdue-wrap {
+  padding: .5rem;
+  background: #f3f5f8;
+  border-radius: 8px;
+  min-height: calc(100vh - 3rem);
+}
+
+.info-card {
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  min-height: 88px;
+}
+
+.card-total {
+  background: #e8f0ff;
+  border-color: #c9dafd;
+}
+
+.card-active {
+  background: #e8f9f0;
+  border-color: #bde8cf;
+}
+
+.card-draft {
+  background: #fff2e7;
+  border-color: #ffd9bd;
+}
+
+.info-card h6 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #1d2a40;
+}
+
+.info-card p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.info-card span {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5a6780;
+}
+.pill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.pill-success {
+  background-color: #d1f7dc;
+  color: #1a7f37;
+}
+
+.pill-danger {
+  background-color: #fde2e2;
+  color: #b42318;
+}
+
+.pill-warning {
+  background-color: #ffe4cc;
+  color: #b45309;
+}
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-danger {
+  background-color: #ffe5e5;
+  color: #d93025;
+}
+
+.badge-warning {
+  background-color: #fff4e5;
+  color: #f9a825;
+}
+
+.pill-info {
+  background-color: #ebeef0;
+  color: rgb(145, 143, 143);
+}
+.badge-low {
+  background-color: #ece9e5;
+  color: #8f8c87;
+}
