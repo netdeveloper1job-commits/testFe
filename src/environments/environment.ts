@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    api_url: "http://localhost:5000",
+    api_url: "https://apitest.mschool.live",
     siteKey:'6LdOVoIqAAAAANqTQUgDkyPGtx9ZIrR6vjTvuk78'
 }
