@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run server",
+    "start:prod": "npx serve -s dist/complaince-hub-fe -l 3000",
     "server": "ng serve",
     "build": "ng build",
     "build:dev": "ng build --configuration=dev",
